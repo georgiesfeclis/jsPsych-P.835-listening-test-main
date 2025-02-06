@@ -15,6 +15,7 @@
   <script src="../lib/jspsych-7.3.0/dist/plugin-audio-slider-response.js" type="text/javascript"></script>
   <script src="../lib/jspsych-7.3.0/dist/plugin-audio-keyboard-response.js" type="text/javascript"></script>
   <script src="../lib/jspsych-7.3.0/dist/plugin-audio-keyboard-response2.js" type="text/javascript"></script>
+  <script src="../lib/jspsych-7.3.0/dist/plugin-survey-text.js" type="text/javascript"></script>
   <script src="../lib/jspsych-7.3.0/dist/plugin-instructions.js" type="text/javascript"></script>
   <script src="../lib/jspsych-7.3.0/dist/plugin-preload.js" type="text/javascript"></script>
   <script src="../lib/jspsych-7.3.0/dist/plugin-fullscreen.js" type="text/javascript"></script>
@@ -124,6 +125,7 @@ console.log(sessions)
 
 
 var uniqueID; 
+var prolificID;
 var soundListened = false;
 var audio;
 var q = 0; 
@@ -192,7 +194,7 @@ var welcome = {
         <p>Thank you for participating in this subjective listening test.</p>
         <p style="font-size:18px">To begin, click on <b>Continue</b>.</p>
 
-        <p style="font-size:12px; color: #555; position: absolute; bottom: 10px; right: 10px; max-width: 300px;">
+        <p style="font-size:11px; color: #555; position: absolute; bottom: 10px; right: 10px; max-width: 450px;">
         This survey is adapted from the jsPsych implementation of ITU-T P.835 listening test, originally created by 
         Matthieu Fraticelli at Sheffield University, available at 
         <a href="https://github.com/UDASE-CHiME2023/jsPsych-P.835-listening-test/tree/main" target="_blank">
@@ -215,27 +217,123 @@ var welcome = {
 
 timeline.push(welcome);
 
+
+
+
+// const consentPage = {
+//     type: jsPsychHtmlButtonResponse,
+//     stimulus: `
+//         <h2>Participant Information & Consent</h2>
+//         <p>Before you begin, please read the following information carefully.</p>
+//         <p>This study involves evaluating audio samples and providing subjective ratings. Participation is voluntary, 
+//           and you may withdraw at any time without penalty. No personal data will be collected, and all responses will remain anonymous.</p>
+//           This research was approved by the SCI S-REC (Faculty of Science Research Ethics Subcommittee), application reference ETH2425-1478.
+//         <p>If you agree to participate, please check the box below and click "Continue" to proceed.</p>
+//         <label>
+//             <input type="checkbox" id="consent-checkbox"> I have read and understood the information and consent to participate in this study.
+//         </label>
+//     `,
+//     choices: ["Continue"],
+//     button_html: `<button id="consent-button" class="jspsych-btn" disabled>Continue</button>`,
+//     on_load: function () {
+//         // Enable the button only when the checkbox is checked
+//         document.getElementById("consent-checkbox").addEventListener("change", function () {
+//             document.getElementById("consent-button").disabled = !this.checked;
+//         });
+//     }
+// };
+// timeline.push(consentPage);
+
+
 const consentPage = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: `
-        <h2>Participant Information & Consent</h2>
-        <p>Before you begin, please read the following information carefully.</p>
-        <p>This study involves evaluating audio samples and providing subjective ratings. Participation is voluntary, and you may withdraw at any time without penalty. No personal data will be collected, and all responses will remain anonymous.</p>
-        <p>If you agree to participate, please check the box below and click "Continue" to proceed.</p>
-        <label>
-            <input type="checkbox" id="consent-checkbox"> I have read and understood the information and consent to participate in this study.
-        </label>
-    `,
-    choices: ["Continue"],
-    button_html: `<button id="consent-button" class="jspsych-btn" disabled>Continue</button>`,
-    on_load: function () {
-        // Enable the button only when the checkbox is checked
-        document.getElementById("consent-checkbox").addEventListener("change", function () {
-            document.getElementById("consent-button").disabled = !this.checked;
-        });
-    }
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `
+    <h2>Participant Information & Consent</h2>
+    <p>Before you begin, please read the following information carefully.</p>
+    <p>This study involves evaluating audio samples and providing subjective ratings. Participation is voluntary, 
+      and you may withdraw at any time without penalty. No personal data will be collected, and all responses will remain anonymous.</p>
+      This research was approved by the SCI S-REC (Faculty of Science Research Ethics Subcommittee), application reference ETH2425-1478.
+    
+    <p>Please download the Participant Information page for more details:</p>
+    <a href="data/ETH2425_1478_Participant_Information_Sheet.pdf" download id="download-link">
+        <button class="jspsych-btn">Download Participant Information PDF</button>
+    </a>
+
+    <p>If you agree to participate, please check the box below and click "Continue" to proceed.</p>
+    <label>
+        <input type="checkbox" id="consent-checkbox"> I have read and understood the information and consent to participate in this study.
+    </label>
+  `,
+  choices: ["Continue"],
+  button_html: `<button id="consent-button" class="jspsych-btn" disabled>Continue</button>`,
+  on_load: function () {
+    // Enable the button only when the checkbox is checked
+    document.getElementById("consent-checkbox").addEventListener("change", function () {
+      document.getElementById("consent-button").disabled = !this.checked;
+    });
+  }
 };
+
 timeline.push(consentPage);
+
+
+var prolificIDTrial = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `
+    <h2>Please enter your Prolific ID</h2>
+    <p>To proceed, please enter your <strong> Prolific ID </strong> in the box below:</p>
+    <p> Make sure the Prolific ID is correctly copied from your Prolific account to ensure you will receive your payment. <p>
+    <textarea id="prolific-id-textbox" rows="1" cols="50"></textarea>
+
+    <!-- Instruction after input box -->
+    <p style="font-size: 16px; color: #555;">Please click Continue to submit your ID.</p>
+
+    <!-- Continue Button -->
+    <div id="continue-button-container" style="margin-top: 20px;">
+      <button id="continue-button" class="jspsych-btn" disabled>Continue</button>
+    </div>
+  `,
+  choices: [],
+  on_load: function() {
+    const continueButton = document.getElementById('continue-button');
+    const inputField = document.getElementById('prolific-id-textbox');
+
+    continueButton.disabled = true;
+
+    inputField.addEventListener('input', function() {
+      console.log("Input detected:", inputField.value); // Log every input
+      continueButton.disabled = inputField.value.trim() === "";
+    });
+
+    inputField.addEventListener('keydown', function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault(); // Prevent form submission or reset
+        console.log("Enter key pressed, but form won't submit.");
+      }
+    });
+
+    continueButton.addEventListener('click', function() {
+      const inputValue = inputField.value.trim();
+
+      if (inputValue !== '') {
+        const cleanedInput = inputValue.replace(/\s/g, ''); 
+        uniqueID += "_";
+        uniqueID += cleanedInput;  
+
+        console.log("Entered Prolific ID (cleaned):", cleanedInput);
+        console.log("Updated uniqueID:", uniqueID);
+      } else {
+        console.log("Prolific ID input is empty.");
+      }
+
+      jsPsych.finishTrial();
+      console.log("Trial finished and moved to the next trial.");
+    });
+  }
+};
+
+
+  timeline.push(prolificIDTrial);    
 
 //To switch in fullscreen
 // var enter_fullscreen = {
@@ -246,6 +344,7 @@ timeline.push(consentPage);
 //       }; 
 
 // timeline.push(enter_fullscreen)
+
 
 var instructions0 = {
   type: jsPsychHtmlButtonResponse,
@@ -1035,27 +1134,25 @@ var globalProcedure = {
   }
 };
 
-// Push the globalProcedure to the timeline (it will add both practice and test session)
 timeline.push(globalProcedure);
 
-var endExp = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: `<p style="font-size:22px; color:black;">Thanks for your participation!</p><hr>`,
-  choices: ["End the experiment"]
-};
-timeline.push(endExp);
+// var endExp = {
+//   type: jsPsychHtmlButtonResponse,
+//   stimulus: `<p style="font-size:22px; color:black;">Thanks for your participation!</p><hr>`,
+//   choices: ["End the experiment"]
+// };
+// timeline.push(endExp);
 
-// Run the experiment
-jsPsych.run(timeline);
-
-
+// // Run the experiment
+// jsPsych.run(timeline);
 
 
 
 // Final experiment ending page
 var endExp = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: `<p style="font-size:22px; color:black;">Thank you for your participation!</p><hr>`,
+  stimulus: `<p style="font-size:22px; color:black;">Thank you for your participation!</p><hr>
+  <p> Please click below to complete the survey and save results! <p>`,
   choices: ["End the experiment"]
 };
 timeline.push(endExp);
