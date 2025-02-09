@@ -3,185 +3,87 @@ all_trials = [
     {
         "subset": 0,
         "session": 0,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_2kHz.wav",
+        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_4kHz.wav",
         "scale": "SIG",
         "end_experiment": "false"
     },
     {
         "subset": 0,
         "session": 0,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_2kHz.wav",
+        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_4kHz.wav",
         "scale": "BAK",
         "end_experiment": "false"
     },
     {
         "subset": 0,
         "session": 0,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_2kHz.wav",
+        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_4kHz.wav",
         "scale": "OVRL",
-        "end_experiment": "false"
-    },
-
-
-    {
-        "subset": 0,
-        "session": 1,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_500Hz.wav",
-        "scale": "SIG",
         "end_experiment": "false"
     },
     {
         "subset": 0,
         "session": 1,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_500Hz.wav",
-        "scale": "BAK",
-        "end_experiment": "false"
-    },
-    {
-        "subset": 0,
-        "session": 1,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_500Hz.wav",
-        "scale": "OVRL",
-        "end_experiment": "false"
-    },
-
-
-    {
-        "subset": 0,
-        "session": 2,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_1kHz.wav",
-        "scale": "SIG",
-        "end_experiment": "false"
-    },
-    {
-        "subset": 0,
-        "session": 2,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_1kHz.wav",
-        "scale": "BAK",
-        "end_experiment": "false"
-    },
-    {
-        "subset": 0,
-        "session": 2,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_1kHz.wav",
-        "scale": "OVRL",
-        "end_experiment": "false"
-    },
-
-
-    {
-        "subset": 0,
-        "session": 3,
         "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_0Hz.wav",
         "scale": "SIG",
         "end_experiment": "false"
     },
     {
         "subset": 0,
-        "session": 3,
+        "session": 1,
         "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_0Hz.wav",
         "scale": "BAK",
         "end_experiment": "false"
     },
     {
         "subset": 0,
-        "session": 3,
+        "session": 1,
         "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_0Hz.wav",
         "scale": "OVRL",
         "end_experiment": "false"
     },
-
-
     {
         "subset": 0,
-        "session": 4,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_500Hz.wav",
-        "scale": "SIG",
-        "end_experiment": "false"
-    },
-    {
-        "subset": 0,
-        "session": 4,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_500Hz.wav",
-        "scale": "BAK",
-        "end_experiment": "false"
-    },
-    {
-        "subset": 0,
-        "session": 4,
-        "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_500Hz.wav",
-        "scale": "OVRL",
-        "end_experiment": "false"
-    },
-
-
-    {
-        "subset": 0,
-        "session": 5,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_1kHz.wav",
-        "scale": "SIG",
-        "end_experiment": "false"
-    },
-    {
-        "subset": 0,
-        "session": 5,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_1kHz.wav",
-        "scale": "BAK",
-        "end_experiment": "false"
-    },
-    {
-        "subset": 0,
-        "session": 5,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_1kHz.wav",
-        "scale": "OVRL",
-        "end_experiment": "false"
-    },
-
-
-    {
-        "subset": 0,
-        "session": 6,
+        "session": 2,
         "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_0Hz.wav",
         "scale": "SIG",
         "end_experiment": "false"
     },
     {
         "subset": 0,
-        "session": 6,
+        "session": 2,
         "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_0Hz.wav",
         "scale": "BAK",
         "end_experiment": "false"
     },
     {
         "subset": 0,
-        "session": 6,
+        "session": 2,
         "file": "data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_0Hz.wav",
         "scale": "OVRL",
         "end_experiment": "false"
     },
-
     {
         "subset": 0,
-        "session": 7,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_2kHz.wav",
+        "session": 3,
+        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_4kHz.wav",
         "scale": "SIG",
         "end_experiment": "false"
     },
     {
         "subset": 0,
-        "session": 7,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_2kHz.wav",
+        "session": 3,
+        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_4kHz.wav",
         "scale": "BAK",
         "end_experiment": "false"
     },
     {
         "subset": 0,
-        "session": 7,
-        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_2kHz.wav",
+        "session": 3,
+        "file": "data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_4kHz.wav",
         "scale": "OVRL",
         "end_experiment": "false"
     },
-
     // Test sessions:
     {
         "subset": 1,

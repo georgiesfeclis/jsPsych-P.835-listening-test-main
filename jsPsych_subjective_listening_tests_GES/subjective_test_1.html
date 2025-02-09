@@ -249,11 +249,10 @@ const consentPage = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `
     <h2>Participant Information & Consent</h2>
-    <p>Before you begin, please read the following information carefully.</p>
+
     <p>This study involves evaluating audio samples and providing subjective ratings. Participation is voluntary, 
-      and you may withdraw at any time without penalty. No personal data will be collected, and all responses will remain anonymous.</p>
-      This research was approved by the SCI S-REC (Faculty of Science Research Ethics Subcommittee), application reference ETH2425-1478.
-    
+      and you may withdraw at any time. No personal data will be collected, and all responses will remain anonymous.</p>
+      
     <p>Please download the Participant Information page for more details:</p>
     <a href="data/ETH2425_1478_Participant_Information_Sheet.pdf" download id="download-link">
         <button class="jspsych-btn">Download Participant Information PDF</button>
@@ -263,6 +262,10 @@ const consentPage = {
     <label>
         <input type="checkbox" id="consent-checkbox"> I have read and understood the information and consent to participate in this study.
     </label>
+
+    <p style="font-size:13px; color: #555; position: absolute; bottom: 10px;">
+      This research was approved by the SCI S-REC (Faculty of Science Research Ethics Subcommittee, University of East Anglia), application reference ETH2425-1478.
+        </p>
   `,
   choices: ["Continue"],
   button_html: `<button id="consent-button" class="jspsych-btn" disabled>Continue</button>`,
@@ -352,8 +355,8 @@ var instructions0 = {
      <p>In this experiment, you will be asked to listen to a number of audio samples. Be sure you follow these steps before starting the experiment:</p>
      <ul style="text-align: left;">
        <li>Make sure you are in a quiet environment with minimal distractions.</li>
-       <li>For optimal sound quality, we recommend using headphones or earphones.</li>
-       <li>Set the volume to a comfortable level where you can hear the audio clearly, but without discomfort. You may readjust the volume as part of this survey once, before starting the test sessions.</li>
+       <li>For optimal sound quality, we recommend using headphones or earphones. (<strong>Please use if available!)</strong></li>
+       <li>Set the volume to a comfortable level where you can hear the audio clearly, but without discomfort. </li>
      </ul>
      <p>Click <b>Continue</b> when you are ready to begin.</p>`,
   choices: ['Continue'],
@@ -408,17 +411,40 @@ var instructions = {
 //   <p> In subsequent sessions, you may hear the same speech again, but it will be processed with a different enhancement method, 
 //   so it will not be the exact same version as before.
 
+// var instructions1 = {
+//   type: jsPsychHtmlButtonResponse,
+//   stimulus: `<p><b>Task description</b></p><hr>
+//   <p> In this experiment, you will be rating the quality of various sound samples containing speech 
+//   processed by an enhancement algorithm. <p>
+//     The experiment is organised into sessions, with each session containing three presentations of the same audio sample (lasting 3-5 seconds)
+//      to be rated on three different scales (one scale for each presentation). You may encounter practice sessions which are there to familiarise
+//       yourself with the task before you begin actual test sessions). <p>
+//     In subsequent sessions, you may hear the same speech again, but it will be processed with a different enhancement method, 
+//   so it will not be identical to any previous session.
+// `,
+//   choices: ['Continue'],
+// }; 
+
 var instructions1 = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: `<p><b>Task description</b></p><hr>
-  <p> In this experiment, you will be rating the quality of various sound samples containing speech 
-  processed by an enhancement algorithm. <p>
-    The experiment is organised into sessions, with each session containing three presentations of the same audio sample (lasting 3-5 seconds)
-     to be rated on three different scales (one scale for each presentation). You may encounter practice sessions which are there to familiarise
-      yourself with the task before you begin actual test sessions). <p>
-    In subsequent sessions, you may hear the same speech again, but it will be processed with a different enhancement method, 
-  so it will not be identical to any previous session.
-`,
+  stimulus: `
+    <p class="task-description">Task Description</p>
+    <hr>
+    <p>In this experiment, you will rate the quality of various audio samples containing speech processed by an enhancement algorithm. 
+      The experiment consists of multiple sessions. Each session includes three presentations of the same audio sample (lasting 3-5 seconds), 
+      which you will rate on three different scales (SIG-BAK-OVRL).</p>
+
+    <p>You may encounter practice sessions to familiarize yourself with the task. In subsequent sessions, 
+      the same speech may be presented again, but processed with a different enhancement method.</p>
+
+    <p>Every two sessions, you will be asked if you are still focused on the task. Use this time to take a break if necessary, 
+      and resume once you feel ready.</p>
+
+    <p><strong>Important: Please do not close the browser until you reach the very end of and click "End the experiment," 
+      as closing it prematurely will terminate the experiment and your results will not be saved.</strong></p>
+
+    <p>The structure of the experiment is shown below:</p>
+    <img src="img/listening_tests_diagram.png" width="900" height="auto">`,
   choices: ['Continue'],
 }; 
 
@@ -427,17 +453,16 @@ var instructions2 = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p><b>Task description - SPEECH SIGNAL EVALUATION</b></p><hr> <p>
   In the FIRST presentation, you will be asked to listen to an audio file and evaluate ONLY the SPEECH SIGNAL QUALITY.
-   You may play the audio sample again on the evaluation page if necessary. 
   Please follow these steps:
   <ol style="text-align: left;">
     <li>Focus only on the speech signal during the presentation.</li>
-    <li>Click the "Play sound" button when you are ready to listen.</li>
-    <li>Rate how distorted the speech signal sounds to you.</li>
+    <li>Click the "Play again" button if you need to listen to the audio again .</li>
+    <li>Rate how distorted the <strong>speech signal</strong> sounds to you.</li>
   </ol>
   You will use the rating scale shown below to record your opinion of the speech signal. 
   Please select the phrase from the list that best describes your perception. 
   The higher the number you choose, the better you think the speech signal sounds.
-
+  <p><strong> EXAMPLE EVALUATION PAGE </strong></p>
   <p>
   <img src="img/sig.png" width="700" height="auto" style="margin-left: 30px; border: 5px solid red;">
   </p>`,
@@ -449,17 +474,16 @@ var instructions3 = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p><b>Task description - BACKGROUND EVALUATION</b></p><hr> <p>
   In the SECOND presentation, you will be asked to listen to an audio file and evaluate ONLY the BACKGROUND.
-   You may play the audio sample again on the evaluation page if necessary. 
   Please follow these steps:
   <ol style="text-align: left;">
     <li>Focus only on the background during the presentation.</li>
-    <li>Click the "Play sound" button when you are ready to listen.</li>
-    <li>Rate how noticeable or intrusive the BACKGROUND sounds to you.</li>
+    <li>Click the "Play again" button if you need to listen to the audio again .</li>
+    <li>Rate how noticeable or intrusive the <strong>backgrounf</strong> sounds to you.</li>
   </ol>
   You will use the rating scale shown below to record your opinion of the background alone. 
   Please select the phrase from the list that best describes your perception. 
   The higher the number you choose, the better you think the speech signal sounds.
-
+  <p><strong> EXAMPLE EVALUATION PAGE </strong></p>
   <p>
   <img src="img/bak.png" width="700" height="auto" style="margin-left: 30px; border: 5px solid red;">
   </p>`,
@@ -471,17 +495,16 @@ var instructions4 = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p><b>Task description - OVERALL SIGNAL EVALUATION</b></p><hr> <p>
   In the THIRD presentation, you will be asked to listen to an audio file and evaluate the OVERALL SIGNAL QUALITY. 
-  You may replay this audio sample on the evaluation page if necessary. 
   Please follow these steps:
   <ol style="text-align: left;">
     <li>Focus on the entire audio sample (both the speech signal and background) during the presentation.</li>
-    <li>Click the "Play sound" button when you are ready to listen.</li>
-    <li>Rate the overall quality of the speech sample for everyday speech communication.</li>
+    <li>Click the "Play again" button if you need to listen to the audio again .</li>
+    <li>Rate the <strong>overall</strong> quality of the speech sample for everyday speech communication.</li>
   </ol>
   You will use the rating scale shown below to record your opinion of the overall speech signal. 
   Please select the phrase from the list that best describes your perception. 
   The higher the number you choose, the better you think the speech signal sounds.
-
+  <p><strong> EXAMPLE EVALUATION PAGE </strong></p>
   <p>
   <img src="img/ovrl.png" width="900" height="auto" style="margin-left: 30px; border: 5px solid red;">
   </p>`,
@@ -489,36 +512,36 @@ var instructions4 = {
 }; 
 
 
-var instructions5 = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: `<p><b>Organization of the Listening Experiment</b></p><hr>
-     <p>The structure of the listening experiment is shown in the figure below.</p>
-     <p>The experiment consists of several listening sessions. Each session consists of three presentations of the same sound sample. 
-      For each presentation, you will be asked to provide a rating.</p>
-     <p>The order of the rating scales (SIG-BAK-OVRL) is specified for each session.</p>
-     Every 2 sessions you will be asked if you are still concentarted on the task. Use these moment to take a break if necessary, 
-     and resume the task once you feel focused enough.
-     <p> <strong>Do not close the browser as this will lead to early termination and failure of the experiment.</strong>
+// var instructions5 = {
+//   type: jsPsychHtmlButtonResponse,
+//   stimulus: `<p><b>Organization of the Listening Experiment</b></p><hr>
+//      <p>The structure of the listening experiment is shown in the figure below.</p>
+//      <p>The experiment consists of several listening sessions. Each session consists of three presentations of the same sound sample. 
+//       For each presentation, you will be asked to provide a rating.</p>
+//      <p>The order of the rating scales (SIG-BAK-OVRL) is specified for each session.</p>
+//      Every 2 sessions you will be asked if you are still concentarted on the task. Use these moment to take a break if necessary, 
+//      and resume the task once you feel focused enough.
+//      <p> <strong>Do not close the browser as this will lead to early termination and failure of the experiment.</strong>
      
-     <p>
-    <img src="img/listening_tests_diagram.png" width="900" height="auto" style="margin-left: 30px; border: 5px solid red;">
-    </p>`,
-  choices: ['Continue'],
-}; 
+//      <p>
+//     <img src="img/listening_tests_diagram.png" width="900" height="auto" style="margin-left: 30px; border: 5px solid red;">
+//     </p>`,
+//   choices: ['Continue'],
+// }; 
 
 
-var instructions6 = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: `<p><b>Volume Adjustment </b></p><hr>
-     <p>The listening system has been set to a default listening level. Before starting the experiment, 
-      you will have the opportunity to listen to a few sound samples to ensure the volume is comfortable for you (see figure below).</p>
-     <p>If the sound is too loud or too quiet, you can adjust the volume using a slider to find a level that feels comfortable.</p>
+// var instructions6 = {
+//   type: jsPsychHtmlButtonResponse,
+//   stimulus: `<p><b>Volume Adjustment </b></p><hr>
+//      <p>The listening system has been set to a default listening level. Before starting the experiment, 
+//       you will have the opportunity to listen to a few sound samples to ensure the volume is comfortable for you (see figure below).</p>
+//      <p>If the sound is too loud or too quiet, you can adjust the volume using a slider to find a level that feels comfortable.</p>
      
-     <p>
-    <img src="img/volume.png" width="700" height="auto" style="margin-left: 30px; border: 5px solid red;">
-    </p>`,
-  choices: ['Continue'],
-}; 
+//      <p>
+//     <img src="img/volume.png" width="700" height="auto" style="margin-left: 30px; border: 5px solid red;">
+//     </p>`,
+//   choices: ['Continue'],
+// }; 
 
 
 var instructions7 = {
@@ -544,186 +567,186 @@ var instructions7 = {
 // INSTRUCTIONS SET PUSH TO TIMELINE
 timeline.push(instructions0);
 timeline.push(trial1);
-timeline.push(instructions);
+// timeline.push(instructions);
 timeline.push(instructions1); 
 timeline.push(instructions2); 
 timeline.push(instructions3); 
 timeline.push(instructions4); 
-timeline.push(instructions5);
-timeline.push(instructions6);
+// timeline.push(instructions5);
+// timeline.push(instructions6);
 timeline.push(instructions7);
 
 
 
-var loudnessTest1 = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: `<p style="font-size:25px; color:black;">Listening level adjustment</p><hr>
-               <p><i>Select the appropriate volume for your sound system.</i></p>
-               <p>Please click on <strong>continue</strong></p><p></p>`,
-    choices: ['Continue']
-};   
-timeline.push(loudnessTest1);
+// var loudnessTest1 = {
+//     type: jsPsychHtmlButtonResponse,
+//     stimulus: `<p style="font-size:25px; color:black;">Listening level adjustment</p><hr>
+//                <p><i>Select the appropriate volume for your sound system.</i></p>
+//                <p>Please click on <strong>continue</strong></p><p></p>`,
+//     choices: ['Continue']
+// };   
+// timeline.push(loudnessTest1);
     
 
-var audio = new Audio('data/backups/female/1673-143396-0012_8297-275155-0022_01/1673-143396-0012_8297-275155-0022_01_8kHz.wav');
-var resultSlider;
+// var audio = new Audio('data/backups/female/1673-143396-0012_8297-275155-0022_01/1673-143396-0012_8297-275155-0022_01_8kHz.wav');
+// var resultSlider;
 
-function dBtoLin(x) {
-  x = 0.5 * Math.exp(Math.log(10) / 20 * x);
-  return x 
-}
+// function dBtoLin(x) {
+//   x = 0.5 * Math.exp(Math.log(10) / 20 * x);
+//   return x 
+// }
 
-var loudnessTest2 = {
-  type: jsPsychHtmlSliderResponse,
-  stimulus: `<p style="font-size:25px; color:black;">Listening level adjustment</p><hr>
-             <p><i>Please press the keys (<strong>1, 2, 3, 4</strong>) on your keyboard to listen to the 4 different audio files.</i></p>
-             <p><i>Adjust the volume using the slider and press each key to hear the sound at the adjusted volume.</i></p>
-             <p><i><strong>Listen to all four sounds at the desired volume before moving to the next step.<strong></i></p><hr>`,
-  button_label: ['Continue'],
-  prompt: `
-    <p>The sound should be clearly audible and not too <strong>quiet</strong> or too <strong>loud</strong>.</p>
-  `,
-  labels: ["Very Quiet", "Quiet", "Comfortable", "Loud", "Very Loud"], 
-  require_movement: false,
-  min: -5,
-  max: 5, 
-  slider_start: 0, 
-  step: 0.2,
-//   on_load: function() {
-//     // Disable the 'Continue' button initially
-//     document.querySelector('.jspsych-btn').disabled = true;
+// var loudnessTest2 = {
+//   type: jsPsychHtmlSliderResponse,
+//   stimulus: `<p style="font-size:25px; color:black;">Listening level adjustment</p><hr>
+//              <p><i>Please press the keys (<strong>1, 2, 3, 4</strong>) on your keyboard to listen to the 4 different audio files.</i></p>
+//              <p><i>Adjust the volume using the slider and press each key to hear the sound at the adjusted volume.</i></p>
+//              <p><i><strong>Listen to all four sounds at the desired volume before moving to the next step.<strong></i></p><hr>`,
+//   button_label: ['Continue'],
+//   prompt: `
+//     <p>The sound should be clearly audible and not too <strong>quiet</strong> or too <strong>loud</strong>.</p>
+//   `,
+//   labels: ["Very Quiet", "Quiet", "Comfortable", "Loud", "Very Loud"], 
+//   require_movement: false,
+//   min: -5,
+//   max: 5, 
+//   slider_start: 0, 
+//   step: 0.2,
+// //   on_load: function() {
+// //     // Disable the 'Continue' button initially
+// //     document.querySelector('.jspsych-btn').disabled = true;
 
-//     // Initialize a set to track which keys have been pressed
-//     window.keysPressed = new Set();
+// //     // Initialize a set to track which keys have been pressed
+// //     window.keysPressed = new Set();
 
-//     // Add an event listener to track key presses
-//     document.addEventListener('keydown', function(event) {
-//         // Check if the key pressed is one of the allowed keys
-//         if (['1', '2', '3', '4'].includes(event.key)) {
-//         window.keysPressed.add(event.key); // Add the key to the set
+// //     // Add an event listener to track key presses
+// //     document.addEventListener('keydown', function(event) {
+// //         // Check if the key pressed is one of the allowed keys
+// //         if (['1', '2', '3', '4'].includes(event.key)) {
+// //         window.keysPressed.add(event.key); // Add the key to the set
+// //         }
+
+// //         // Enable the 'Continue' button only if all 4 keys have been pressed
+// //         if (window.keysPressed.has('1') && window.keysPressed.has('2') && window.keysPressed.has('3') && window.keysPressed.has('4')) {
+// //         document.querySelector('.jspsych-btn').disabled = false;  // Enable 'Continue' button
+// //         }
+// //     });
+// //   },
+//   on_start: function(){
+
+//         keyPress1 = null
+//         rtKey1 = null
+
+//         var press1 = function(info){
+//         audio.pause()
+//         console.log("Touch 1 pressed at " + info.rt +  " ms")
+//         keyPress1 = true
+//         rtArray1.push(info.rt)
+//         rtKey1 = info.rt
+//         audio = new Audio("data/backups/female/1673-143396-0012_8297-275155-0022_01/1673-143396-0012_8297-275155-0022_01_8kHz.wav");
+//         slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
+//         audio.loop = false;
+//         console.log(dBtoLin(slider_value))
+//         audio.volume = dBtoLin(slider_value);
+//         audio.play()
 //         }
+        
+//         keyPress2 = null
+//         rtKey2 = null
 
-//         // Enable the 'Continue' button only if all 4 keys have been pressed
-//         if (window.keysPressed.has('1') && window.keysPressed.has('2') && window.keysPressed.has('3') && window.keysPressed.has('4')) {
-//         document.querySelector('.jspsych-btn').disabled = false;  // Enable 'Continue' button
+//         var press2 = function(info){
+//         audio.pause()
+//         console.log("Touch 2 pressed at " + info.rt +  " ms")
+//         keyPress2 = true
+//         rtArray2.push(info.rt)
+//         rtKey2 = info.rt
+//         audio = new Audio("data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_8kHz.wav");
+//         slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
+//         audio.loop = false;
+//         console.log(dBtoLin(slider_value))
+//         audio.volume = dBtoLin(slider_value);
+//         audio.play()
+//         audio.play().catch(e => console.error("Error playing audio 1:", e));
 //         }
-//     });
+        
+//         keyPress3 = null
+//         rtKey3 = null
+
+//         var press3 = function(info){
+//         audio.pause()
+//         console.log("Touch 3 pressed at " + info.rt +  " ms")
+//         keyPress3 = true
+//         rtArray3.push(info.rt)
+//         rtKey3 = info.rt
+//         audio = new Audio("data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_8kHz.wav");
+//         slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
+//         audio.loop = false;
+//         console.log(dBtoLin(slider_value))
+//         audio.volume = dBtoLin(slider_value);
+//         audio.play()
+//         }
+        
+//         keyPress4 = null
+//         rtKey4 = null
+
+//         var press4 = function(info){
+//         audio.pause()
+//         console.log("Touch 4 pressed at " + info.rt +  " ms")
+//         keyPress4 = true
+//         rtArray4.push(info.rt)
+//         rtKey4 = info.rt
+//         audio = new Audio("data/backups/male/251-136532-0021_5694-64029-0030_01/251-136532-0021_5694-64029-0030_01_8kHz.wav");
+//         slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
+//         audio.loop = false;
+//         console.log(dBtoLin(slider_value))
+//         audio.volume = dBtoLin(slider_value);
+//         audio.play()
+//         }
+        
+
+//         var keyboard1 = jsPsych.pluginAPI.getKeyboardResponse({
+//           callback_function: press1,
+//           valid_responses: ['1','&', 'a'],
+//           rt_method: 'performance',
+//           persist: true,
+//           allow_held_key: true,
+//         })
+        
+//         var keyboard2 = jsPsych.pluginAPI.getKeyboardResponse({
+//           callback_function: press2,
+//           valid_responses: ['2','é', 's'],
+//           rt_method: 'performance',
+//           persist: true,
+//           allow_held_key: true,
+//         })
+        
+//         var keyboard3 = jsPsych.pluginAPI.getKeyboardResponse({
+//           callback_function: press3,
+//           valid_responses: ['3','"', "d"],
+//           rt_method: 'performance',
+//           persist: true,
+//           allow_held_key: true,
+//         })
+        
+//         var keyboard4 = jsPsych.pluginAPI.getKeyboardResponse({
+//           callback_function: press4,
+//           valid_responses: ['4',"'", "f"],
+//           rt_method: 'performance',
+//           persist: true,
+//           allow_held_key: true,
+//         })
+//   },  
+//   on_finish: function(data){
+//     audio.pause()
+
+//     resultSlider = jsPsych.data.getLastTrialData().trials[0].response
+//     resultSlider = dBtoLin(resultSlider)
+//     console.log(resultSlider)
+//     return resultSlider
 //   },
-  on_start: function(){
+// };
 
-        keyPress1 = null
-        rtKey1 = null
-
-        var press1 = function(info){
-        audio.pause()
-        console.log("Touch 1 pressed at " + info.rt +  " ms")
-        keyPress1 = true
-        rtArray1.push(info.rt)
-        rtKey1 = info.rt
-        audio = new Audio("data/backups/female/1673-143396-0012_8297-275155-0022_01/1673-143396-0012_8297-275155-0022_01_8kHz.wav");
-        slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
-        audio.loop = false;
-        console.log(dBtoLin(slider_value))
-        audio.volume = dBtoLin(slider_value);
-        audio.play()
-        }
-        
-        keyPress2 = null
-        rtKey2 = null
-
-        var press2 = function(info){
-        audio.pause()
-        console.log("Touch 2 pressed at " + info.rt +  " ms")
-        keyPress2 = true
-        rtArray2.push(info.rt)
-        rtKey2 = info.rt
-        audio = new Audio("data/backups/female/2412-153954-0016_174-50561-0007_01/2412-153954-0016_174-50561-0007_01_8kHz.wav");
-        slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
-        audio.loop = false;
-        console.log(dBtoLin(slider_value))
-        audio.volume = dBtoLin(slider_value);
-        audio.play()
-        audio.play().catch(e => console.error("Error playing audio 1:", e));
-        }
-        
-        keyPress3 = null
-        rtKey3 = null
-
-        var press3 = function(info){
-        audio.pause()
-        console.log("Touch 3 pressed at " + info.rt +  " ms")
-        keyPress3 = true
-        rtArray3.push(info.rt)
-        rtKey3 = info.rt
-        audio = new Audio("data/backups/male/174-84280-0006_3536-23268-0011_01/174-84280-0006_3536-23268-0011_01_8kHz.wav");
-        slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
-        audio.loop = false;
-        console.log(dBtoLin(slider_value))
-        audio.volume = dBtoLin(slider_value);
-        audio.play()
-        }
-        
-        keyPress4 = null
-        rtKey4 = null
-
-        var press4 = function(info){
-        audio.pause()
-        console.log("Touch 4 pressed at " + info.rt +  " ms")
-        keyPress4 = true
-        rtArray4.push(info.rt)
-        rtKey4 = info.rt
-        audio = new Audio("data/backups/male/251-136532-0021_5694-64029-0030_01/251-136532-0021_5694-64029-0030_01_8kHz.wav");
-        slider_value = jsPsych.getDisplayElement().querySelector("#jspsych-html-slider-response-response").valueAsNumber
-        audio.loop = false;
-        console.log(dBtoLin(slider_value))
-        audio.volume = dBtoLin(slider_value);
-        audio.play()
-        }
-        
-
-        var keyboard1 = jsPsych.pluginAPI.getKeyboardResponse({
-          callback_function: press1,
-          valid_responses: ['1','&', 'a'],
-          rt_method: 'performance',
-          persist: true,
-          allow_held_key: true,
-        })
-        
-        var keyboard2 = jsPsych.pluginAPI.getKeyboardResponse({
-          callback_function: press2,
-          valid_responses: ['2','é', 's'],
-          rt_method: 'performance',
-          persist: true,
-          allow_held_key: true,
-        })
-        
-        var keyboard3 = jsPsych.pluginAPI.getKeyboardResponse({
-          callback_function: press3,
-          valid_responses: ['3','"', "d"],
-          rt_method: 'performance',
-          persist: true,
-          allow_held_key: true,
-        })
-        
-        var keyboard4 = jsPsych.pluginAPI.getKeyboardResponse({
-          callback_function: press4,
-          valid_responses: ['4',"'", "f"],
-          rt_method: 'performance',
-          persist: true,
-          allow_held_key: true,
-        })
-  },  
-  on_finish: function(data){
-    audio.pause()
-
-    resultSlider = jsPsych.data.getLastTrialData().trials[0].response
-    resultSlider = dBtoLin(resultSlider)
-    console.log(resultSlider)
-    return resultSlider
-  },
-};
-
-timeline.push(loudnessTest2);
+// timeline.push(loudnessTest2);
 
 
 
@@ -831,8 +854,8 @@ var audioPlay = {
           console.log(`SOUND: ${soundPlayed}`)
           audio.loop = false;
         //   console.log(document.getElementById(soundPlayed).duration)
-          console.log(resultSlider)
-          audio.volume = resultSlider;
+          // console.log(resultSlider)
+          // audio.volume = resultSlider;
           audio.play()
          
           return soundPlayed
@@ -891,7 +914,7 @@ var task = {
     console.log(q);
     soundPlayed = all_trials[q].file;
     var audioElement = new Audio(soundPlayed); 
-    audioElement.volume = resultSlider;
+    // audioElement.volume = resultSlider;
     audioElement.pause(); 
 
     
@@ -962,7 +985,7 @@ var dataSave = {
         task: 'REPONSE SUBJET',
         id: uniqueID,
         date: Date(Date.now()).toLocaleString().split(',')[0],
-        vol: `${resultSlider}`,
+        // vol: `${resultSlider}`,
         soundPlayed: `${soundPlayed}`,  //`${}`,
         cond:`${all_trials[q].scale}`,
         subset:`${all_trials[q].subset}`,
