@@ -26,7 +26,9 @@
 
   <!-- Load experiment configuration file -->
   <script src="js/config.js" type="text/javascript"></script> 
-  <script src="js/subjective_listening_experiment_1.json" type="text/javascript"></script> 
+  <!--<script src="js/subjective_listening_experiment_1.js" type="text/javascript"></script> -->
+  <script src="js/debug_experiment.js" type="text/javascript"></script> 
+  <script src="js/submit.js" type="text/javascript"></script> 
 
   <!-- Load CSS styles -->
   <link href="../lib/jspsych-7.3.0/dist/jspsych.css" rel="stylesheet" type="text/css"></link>
@@ -60,7 +62,9 @@ console.log(all_trials.length)
 var jsPsych = initJsPsych({
       on_finish: function() {
       //jsPsych.data.displayData(); 
-        jsPsych.data.get().localSave('csv',`${uniqueID}_data.csv`);
+        //jsPsych.data.get().localSave('csv',`${uniqueID}_data.csv`);
+        var data = jsPsych.data.get().json();
+        submit(data, 'random');
        },
       on_trial_start: function() {
        },
