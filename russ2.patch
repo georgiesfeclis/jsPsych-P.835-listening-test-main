@@ -1,0 +1,43 @@
+diff --git a/jsPsych_subjective_listening_tests_GES/js/debug_experiment.js b/jsPsych_subjective_listening_tests_GES/js/debug_experiment_1.js
+similarity index 100%
+rename from jsPsych_subjective_listening_tests_GES/js/debug_experiment.js
+rename to jsPsych_subjective_listening_tests_GES/js/debug_experiment_1.js
+diff --git a/jsPsych_subjective_listening_tests_GES/subjective_test_1.html b/jsPsych_subjective_listening_tests_GES/subjective_test_1.html
+index c4496a2..7cfb528 100644
+--- a/jsPsych_subjective_listening_tests_GES/subjective_test_1.html
++++ b/jsPsych_subjective_listening_tests_GES/subjective_test_1.html
+@@ -26,8 +26,8 @@
+ 
+   <!-- Load experiment configuration file -->
+   <script src="js/config.js" type="text/javascript"></script> 
+-  <!--<script src="js/subjective_listening_experiment_1.js" type="text/javascript"></script> -->
+-  <script src="js/debug_experiment.js" type="text/javascript"></script> 
++  <script src="/experiment" type="text/javascript"></script>
++  <script src="/settings" type="text/javascript"></script>
+   <script src="js/submit.js" type="text/javascript"></script> 
+ 
+   <!-- Load CSS styles -->
+@@ -56,7 +56,7 @@ University of East Anglia
+ //-------------------------------------------------------------------------------------------------------------
+ 
+ console.log(all_trials.length)
+-
++console.log('complete url: ' + submit_settings['cu'])
+ 
+ // Initialize jsPsych
+ var jsPsych = initJsPsych({
+@@ -305,7 +305,14 @@ var prolificIDTrial = {
+     const continueButton = document.getElementById('continue-button');
+     const inputField = document.getElementById('prolific-id-textbox');
+ 
++    let params = new URLSearchParams(document.location.search);
++    let pid = params.get("PROLIFIC_PID");
++    if (pid==null) {
++        pid='';
++    }
++
+     continueButton.disabled = true;
++    inputField.value = pid;
+ 
+     inputField.addEventListener('input', function() {
+       console.log("Input detected:", inputField.value); // Log every input

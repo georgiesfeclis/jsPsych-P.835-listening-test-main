@@ -26,8 +26,8 @@
 
   <!-- Load experiment configuration file -->
   <script src="js/config.js" type="text/javascript"></script> 
-  <!--<script src="js/subjective_listening_experiment_1.js" type="text/javascript"></script> -->
-  <script src="js/debug_experiment.js" type="text/javascript"></script> 
+  <script src="/experiment" type="text/javascript"></script>
+  <script src="/settings" type="text/javascript"></script>
   <script src="js/submit.js" type="text/javascript"></script> 
 
   <!-- Load CSS styles -->
@@ -56,7 +56,7 @@ University of East Anglia
 //-------------------------------------------------------------------------------------------------------------
 
 console.log(all_trials.length)
-
+console.log('complete url: ' + submit_settings['cu'])
 
 // Initialize jsPsych
 var jsPsych = initJsPsych({
@@ -305,7 +305,14 @@ var prolificIDTrial = {
     const continueButton = document.getElementById('continue-button');
     const inputField = document.getElementById('prolific-id-textbox');
 
+    let params = new URLSearchParams(document.location.search);
+    let pid = params.get("PROLIFIC_PID");
+    if (pid==null) {
+        pid='';
+    }
+
     continueButton.disabled = true;
+    inputField.value = pid;
 
     inputField.addEventListener('input', function() {
       console.log("Input detected:", inputField.value); // Log every input
@@ -1123,7 +1130,7 @@ var practiceNotification = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `<p><b>Practice Session</b></p><hr>
      <p>This is a practice session. Please focus on the task and complete the ratings as best as you can.</p>
-     <p>There is no need to worry about making mistakes — this session is just 
+     <p>There is no need to worry about making mistakes - this session is just 
       to help you get familiar with the task.</p>`,
   choices: ['Continue'],
 }; 
